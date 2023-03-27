@@ -1,31 +1,65 @@
 <script lang="ts">
-  
   import logo from '../assets/images/logo.svg'
+  import menu from '../assets/images/icon-hamburger.svg'
+  import close from '../assets/images/icon-close.svg'
   import arrowLight from '../assets/images/icon-arrow-light.svg'
+  import arrowDark from '../assets/images/icon-arrow-dark.svg'
 
   const handleClickNav = (e: MouseEvent) => {
-    const imgStyle = (e.currentTarget as any).childNodes[0].getAttribute('style');
-    if (!imgStyle) {
+    const imgStyle = (e.currentTarget as any).childNodes[0].childNodes[0].getAttribute('style');
+    const imgStyle2 = (e.currentTarget as any).childNodes[0].childNodes[2].getAttribute('style');
+    if (!imgStyle || !imgStyle2) {
         for (let i = 0; i < document.getElementsByClassName('navigation').length; i++) {
-            (document.getElementsByClassName('navigation')[i].childNodes[0] as any).setAttribute('style', '');
+            (document.getElementsByClassName('navigation')[i].childNodes[0].childNodes[0] as any).setAttribute('style', '');
+            (document.getElementsByClassName('navigation')[i].childNodes[0].childNodes[2] as any).setAttribute('style', '');
             (document.getElementsByClassName('navigation')[i].childNodes[2] as any).setAttribute('style', '');
         }
-        (e.currentTarget as any).childNodes[0].setAttribute('style', 'transform: scale(-1);');
+        (e.currentTarget as any).childNodes[0].childNodes[0].setAttribute('style', 'transform: scale(-1);');
+        (e.currentTarget as any).childNodes[0].childNodes[2].setAttribute('style', 'transform: scale(-1);');
         (e.currentTarget as any).childNodes[2].setAttribute('style', 'display: block;');
     } else {
-        (e.currentTarget as any).childNodes[0].setAttribute('style', '');
+        (e.currentTarget as any).childNodes[0].childNodes[0].setAttribute('style', '');
+        (e.currentTarget as any).childNodes[0].childNodes[2].setAttribute('style', '');
         (e.currentTarget as any).childNodes[2].setAttribute('style', '');
     }
-    
+  }
+
+  const handleMenu = () => {
+    const menuIcon = document.getElementById('menu').getAttribute('style');
+    const closeIcon = document.getElementById('close').getAttribute('style');
+    if (menuIcon) {
+        document.getElementById('menu').setAttribute('style', '');
+    } else {
+        document.getElementById('menu').setAttribute('style', 'display: none;');
+    }
+
+    if (closeIcon) {
+        document.getElementById('close').setAttribute('style', '');
+    } else {
+        document.getElementById('close').setAttribute('style', 'display: block;');
+    }
+    const displayMenu = document.getElementById('nav').getAttribute('style');
+    if (!displayMenu) {
+        document.getElementById('nav').setAttribute('style', 'display: block;');
+    } else {
+        document.getElementById('nav').setAttribute('style', '');
+    }
   }
 
 </script>
 <header>
     <img id='logo' src={logo} alt='Logo'>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <img id='menu' src={menu} alt='Menu' on:click={handleMenu}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <img id='close' src={close} alt='Close' on:click={handleMenu}>
     <div id='nav'>
         <nav>
             <button id='product' class='navigation' type='button' on:click={handleClickNav}>
-                <img src={arrowLight} alt='Arrow'>
+                <div class='label'>
+                    <img class='arrowLight' src={arrowLight} alt='Arrow'>
+                    <img class='arrowDark' src={arrowDark} alt='Arrow'>
+                </div>
                 <div class='options'>
                     <span>Overview</span>
                     <span>Pricing</span>
@@ -35,7 +69,10 @@
                 </div>
             </button>
             <button id='company' class='navigation' type='button' on:click={handleClickNav}>
-                <img src={arrowLight} alt='Arrow'>
+                <div class='label'>
+                    <img class='arrowLight' src={arrowLight} alt='Arrow'>
+                    <img class='arrowDark' src={arrowDark} alt='Arrow'>
+                </div>
                 <div class='options'>
                     <span>About</span>
                     <span>Team</span>
@@ -44,7 +81,10 @@
                 </div>
             </button>
             <button id='connect' class='navigation' type='button' on:click={handleClickNav}>
-                <img src={arrowLight} alt='Arrow'>
+                <div class='label'>
+                    <img class='arrowLight' src={arrowLight} alt='Arrow'>
+                    <img class='arrowDark' src={arrowDark} alt='Arrow'>
+                </div>
                 <div class='options'>
                     <span>Contact</span>
                     <span>Newsletter</span>
@@ -70,6 +110,9 @@
   }
     #logo {
         align-self: center;
+    }
+    #menu, #close {
+        display: none;
     }
     #nav {
         width: 100%;
@@ -104,8 +147,11 @@
             .navigation img {
                 margin-left: 0.5rem;
             }
+            .navigation .arrowDark {
+                display: none;
+            }
             .navigation .options span {
-                color: hsl(207, 13%, 34%);
+                color: var(--very-dark-grayish-blue);
                 font-weight: 300;
                 display: block;
                 margin-block-end: 0.5rem;
@@ -117,7 +163,7 @@
                 .navigation .options span:last-child {
                     margin-block-end: 0;
                 }
-            .navigation::before {
+            .navigation .label::before {
                 color: white;
                 font-weight: 600;
             }
@@ -128,17 +174,17 @@
                 .navigation:hover .options {
                     cursor: default;
                 }
-            .navigation:hover::before {
+            .navigation:hover .label::before {
                 text-decoration: underline;
             }
         
-        #product::before {
+        #product .label::before {
             content: 'Product';
         }
-        #company::before {
+        #company .label::before {
             content: 'Company';
         }
-        #connect::before {
+        #connect .label::before {
             content: 'Connect';
         }
 
@@ -168,5 +214,93 @@
         width: calc(100% - 8rem);
         padding: 3rem 4rem;
     }
+}
+
+@media screen and (max-aspect-ratio: 1) {
+    header {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: calc(100vw - 2rem);
+        justify-content: space-between;
+        padding: 1rem;
+        align-items: center;
+        background-image: linear-gradient(to right, #ff8b70, #ff4457);
+    }
+    #menu {
+        display: block;
+    }
+    #nav {
+        display: none;
+        width: calc(100vw - 4rem);
+        position: absolute;
+        top: calc(100% + 1rem);
+        left: 1rem;
+        flex-direction: column;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+        nav {
+            flex-direction: column;
+            width: 100%;
+            border-width: 0;
+            border-block-end-width: 0.1rem;
+            border-color: #efeff1;
+            border-style: solid;
+        }
+        .navigation {
+            margin-left: 0;
+            color: var(--very-dark-grayish-blue);
+            padding: 1rem 1rem 0 1rem;
+        }
+        .navigation:last-child {
+            margin-block-end: 1rem;
+        }
+        .navigation .label {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: var(--very-dark-grayish-blue);
+        }
+        .navigation .label::before {
+           color: var(--very-dark-grayish-blue);
+        }
+
+        .navigation .arrowLight {
+            display: none;
+        }
+        .navigation .arrowDark {
+            display: block;
+        }
+        .navigation .options {
+            margin-block-start: 1rem;
+            position: static;
+            transform: none;
+            text-align: center;
+            min-width: 0;
+            background-color: #efeff1;
+        }
+        .navigation .options span {
+            margin-block-end: 1rem;
+            font-weight: 600;
+        }
+
+    #authentication {
+        display: grid;
+        margin-block: 1rem;
+    }
+        #authentication button {
+            width: 50%;
+            justify-self: center;
+        }
+        #authentication button:first-child {
+            color: var(--very-dark-grayish-blue);
+        }
+        #authentication button:last-child {
+            color: white;
+            background-image: linear-gradient(to right, #ff8b70, #ff4457);
+        }
 }
 </style>
