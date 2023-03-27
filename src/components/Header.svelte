@@ -125,6 +125,7 @@
         }
 
         .navigation {
+            font-family: Overpass, sans-serif;
             margin-left: 4rem;
             position: relative;
             background-color: transparent;
@@ -189,7 +190,7 @@
         }
 
     #authentication button {
-        font-family: Overpass, sans-serif;
+        font-family: Ubuntu, sans-serif;
         font-weight: 600;
         padding: 1rem 2rem;
         border-radius: 2rem;
@@ -226,7 +227,7 @@
         justify-content: space-between;
         padding: 1rem;
         align-items: center;
-        background-image: linear-gradient(to right, #ff8b70, #ff4457);
+        /* background-image: linear-gradient(to right, #ff8b70, #ff4457); */
     }
     #menu {
         display: block;
@@ -300,7 +301,7 @@
         }
         #authentication button:last-child {
             color: white;
-            background-image: linear-gradient(to right, #ff8b70, #ff4457);
+            background-image: linear-gradient(to right, hsl(13, 100%, 72%), hsl(353, 100%, 62%));
         }
 }
 </style>
