@@ -1,8 +1,10 @@
 <script lang="ts">
     import heroImg from '../assets/images/bg-pattern-intro-desktop.svg'
     import editorDesktop from '../assets/images/illustration-editor-desktop.svg'
+    import laptopDesktop from '../assets/images/illustration-laptop-desktop.svg'
 
     import phone from '../assets/images/illustration-phones.svg'
+    import circle from '../assets/images/bg-pattern-circles.svg'
 </script>
 <main>
     <section id='hero'>
@@ -41,8 +43,9 @@
         </div>
     </section>
     <section id='art'>
+        <img id='phone' src={phone} alt='Phone'>
         <div>
-            <img src={phone} alt='Phone'>
+            <img src={circle} alt='Circle'>
         </div>
         <article>
             <h1>State of the Art Infrastructure</h1>
@@ -53,23 +56,28 @@
         </article>
     </section>
     <section id='reason'>
-        <article>
-            <div>
-                <h2>Free, open, simple</h2>
-                <p>
-                    Blogr is a free and open source application backed by a large community of helpful developers. It supports 
-                    features such as code syntax highlighting, RSS feeds, social media integration, third-party commenting tools, 
-                    and works seamlessly with Google Analytics. The architecture is clean and is relatively easy to learn.
-                </p>
+        <div class='paragraph'>
+            <div class='backgroundImg2'>
+                <img src={laptopDesktop} alt='Editor'>
             </div>
-            <div>
-                <h2>Powerful tooling</h2>
-                <p>
-                    Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but
-                    capable of producing even the most complicated sites.
-                </p>
-            </div>
-        </article>
+            <article>
+                <div>
+                    <h2>Free, open, simple</h2>
+                    <p>
+                        Blogr is a free and open source application backed by a large community of helpful developers. It supports 
+                        features such as code syntax highlighting, RSS feeds, social media integration, third-party commenting tools, 
+                        and works seamlessly with Google Analytics. The architecture is clean and is relatively easy to learn.
+                    </p>
+                </div>
+                <div>
+                    <h2>Powerful tooling</h2>
+                    <p>
+                        Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but
+                        capable of producing even the most complicated sites.
+                    </p>
+                </div>
+            </article>
+        </div>
     </section>
 </main>
 <style scoped>
@@ -138,7 +146,7 @@
         grid-template-columns: 50% 50%;
     }
         .paragraph article {
-            padding: 15%;
+            padding: 15% 0 15% 15%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -152,25 +160,40 @@
                 line-height: 2rem;
             }
 
-        .backgroundImg {
-            position: relative;
-        }
             .backgroundImg img {
                 width: 130%;
                 transform: translate(3%);
             }
 
+            .backgroundImg2 img {
+                width: 130%;
+                transform: translate(-29%);
+            }
+
     #art {
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 50% 50%;
+        display: flex;
+        justify-content: end;
         color: white;
         background-image: linear-gradient(to right, hsl(237, 17%, 21%), hsl(237, 23%, 32%));
-        border-radius: 0 8rem 0 2rem;
+        border-radius: 0 8rem 0 8rem;
         margin-block: 5rem;
+        position: relative;
+        overflow-y: visible;
+        min-height: 50vh;
     }
+        #phone {
+            position: absolute;
+            z-index: 1;
+            left: 25%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 140%;
+        }
         #art article {
-            padding: 15% 15% 15% 0;
+            position: relative;
+            width: 35%;
+            padding: 8% 15% 8% 0;
+            z-index: 1;
         }
             #art article h1 {
                 margin-block-start: 0;
@@ -180,16 +203,31 @@
                 line-height: 2rem;
                 margin-block-end: 0;
             }
-        #art div{
-            overflow: visible;
-            position: relative;
+        #art div {
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 60%;
+            overflow: hidden;
+            z-index: 0;
         }
             #art div img {
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                left: 0;
+                top: 0;
+                transform: translate(-25%, -50%);
+                width: 120%;
             }
+
+    #reason .paragraph article {
+        padding: 15% 15% 15% 0;
+    }
+
+@media screen and (min-aspect-ratio: 1) and (max-width: 1024px) {
+    #phone {
+        height: 130%;
+    }
+}
 
 @media screen and (max-aspect-ratio: 1) {
     #hero {
