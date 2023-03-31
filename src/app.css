@@ -15,4 +15,5 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Overpass, sans-serif;
+    overflow-x: hidden;
 }
