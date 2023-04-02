@@ -124,8 +124,15 @@
                     background-color: transparent;
                     color: white;
                 }
+                    #hero div button:last-child:hover {
+                        background-color: white;
+                        border-color: white;
+                        color: var(--very-light-red);
+                    }
             #hero div button:hover {
                 cursor: pointer;
+                border-color: var(--very-light-red);
+                background-color: var(--very-light-red);
             }
     #design {
         position: relative;
