@@ -69,4 +69,24 @@
     bottom: 1vh;
     transform: translate(-50%);
   }
+
+@media screen and (max-aspect-ratio: 1) and (max-width: 767px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    text-align: center;
+    align-items: center;
+  }
+  footer img {
+    width: 40%;
+    margin-bottom: 4rem;
+  }
+
+  #challenger {
+    margin-block-start: 4rem;
+    position: static;
+    transform: none;
+  }
+}
 </style>
