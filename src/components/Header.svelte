@@ -217,17 +217,13 @@
     }
 }
 
-@media screen and (max-aspect-ratio: 1) {
+@media screen and (max-aspect-ratio: 1)  {
     header {
-        position: fixed;
         z-index: 2;
-        top: 0;
-        left: 0;
         width: calc(100vw - 2rem);
         justify-content: space-between;
         padding: 1rem;
         align-items: center;
-        /* background-image: linear-gradient(to right, #ff8b70, #ff4457); */
     }
     #menu {
         display: block;
@@ -305,3 +301,4 @@
         }
 }
 </style>
+
