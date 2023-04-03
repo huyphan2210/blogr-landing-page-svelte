@@ -1,7 +1,9 @@
 <script lang="ts">
     import heroImg from '../assets/images/bg-pattern-intro-desktop.svg'
     import editorDesktop from '../assets/images/illustration-editor-desktop.svg'
+    import editorMobile from '../assets/images/illustration-editor-mobile.svg'
     import laptopDesktop from '../assets/images/illustration-laptop-desktop.svg'
+    import laptopMobile from '../assets/images/illustration-laptop-mobile.svg'
 
     import phone from '../assets/images/illustration-phones.svg'
     import circle from '../assets/images/bg-pattern-circles.svg'
@@ -39,6 +41,7 @@
             </article>
             <div class='backgroundImg'>
                 <img src={editorDesktop} alt='Editor'>
+                <img src={editorMobile} alt='Editor'>
             </div>
         </div>
     </section>
@@ -58,7 +61,8 @@
     <section id='reason'>
         <div class='paragraph'>
             <div class='backgroundImg2'>
-                <img src={laptopDesktop} alt='Editor'>
+                <img src={laptopDesktop} alt='Laptop'>
+                <img src={laptopMobile} alt='Laptop'>
             </div>
             <article>
                 <div>
@@ -171,10 +175,16 @@
                 width: 130%;
                 transform: translate(3%);
             }
+            .backgroundImg img:last-child {
+                display: none;
+            }
 
             .backgroundImg2 img {
                 width: 130%;
                 transform: translate(-29%);
+            }
+            .backgroundImg2 img:last-child {
+                display: none;
             }
 
     #art {
@@ -237,6 +247,14 @@
 }
 
 @media screen and (max-aspect-ratio: 1) {
+    @media screen and (min-width: 540px) and (max-width: 912px) {
+        #phone {
+            width: 50% !important;
+        }
+        #art div img {
+            width: 60% !important;
+        }
+    }
     #hero {
         background-image: linear-gradient(135deg, #ff8b70, #ff4457);
     }
@@ -245,5 +263,70 @@
         transform: translate(-45%, -45%);
         max-width: 400%;
     }
+
+    #design {
+        text-align: center;
+    }
+
+        #design h1 {
+            top: -10%;
+        }
+
+        .paragraph {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .paragraph article {
+            padding: 2rem;
+        }
+            .backgroundImg img {
+                display: none;
+            }
+            .backgroundImg img:last-child {
+                width: 100%;
+                display: block;
+                transform: none;
+            }
+    #art {
+        margin-block: 10rem;
+    }
+        #phone {
+            top: 0;
+            width: 100%;
+            height: unset;
+            left: 50%;
+        }
+        #art div {
+            width: 100%;
+        }
+        #art div img{
+            width: 120%;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -40%);
+        }
+        #art article {
+            text-align: center;
+            width: calc(100% - 4rem);
+            margin-top: 10rem;
+            padding: 2rem 2rem 8rem 2rem;
+        }
+    #reason .paragraph {
+        flex-direction: column;
+        text-align: center;
+    }
+    #reason .paragraph article {
+        padding: 2rem;
+    }
+    .backgroundImg2 img {
+        display: none;
+    }
+    .backgroundImg2 img:last-child {
+        display: block;
+        width: 100%;
+        transform: none;
+    }
 }
 </style>
+
